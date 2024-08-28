@@ -42,7 +42,7 @@ jobs:
       run: |
         touch res1.json
         touch res2.json
-        sleep 5
+        sleep 10
 
     - name: Invoke Lambda function for test 1
       run: |
@@ -51,7 +51,7 @@ jobs:
     - name: Display response from test 1
       run: |
         echo "Response from test1.json:"
-        cat res.json
+        cat res1.json
 
     - name: Invoke Lambda function for test 2
       run: |
@@ -60,4 +60,4 @@ jobs:
     - name: Display response from test 2
       run: |
         echo "Response from test2s.json:"
-        cat res.json
+        cat res2.json
