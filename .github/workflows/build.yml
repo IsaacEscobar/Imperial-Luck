@@ -1,0 +1,65 @@
+name: CI/CD Pipeline for Lambda
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Package Lambda function
+      run: |
+        zip -r function.zip funcion.py
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+        
+    - name: Deploy to AWS Lambda
+      if: success()
+      run: |
+        aws lambda update-function-code --function-name funcion --zip-file fileb://function.zip
+
+    - name: Invoke Lambda function with test-pos.json
+      run: |
+        aws lambda invoke \
+        --function-name funcion \
+        --payload file://test-pos.json \
+        response-pos.json \
+        --cli-binary-format raw-in-base64-out
+
+    - name: Display response from test-pos.json
+      run: |
+        echo "Response from test-pos.json:"
+        cat response-pos.json
+
+    - name: Invoke Lambda function with test-neg.json
+      run: |
+        aws lambda invoke \
+          --function-name funcion \
+          --payload file://test-neg.json \
+          response-neg.json \
+          --cli-binary-format raw-in-base64-out
+
+    - name: Display response from test-neg.json
+      run: |
+        echo "Response from test-neg.json:"
+        cat response-neg.json
