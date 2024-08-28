@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
+        python-version: '3.12'
 
     - name: Install dependencies
       run: |
@@ -24,7 +24,7 @@ jobs:
 
     - name: Package Lambda function
       run: |
-        zip -r function.zip funcion.py
+        zip -r policies.zip policies.py
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
@@ -36,7 +36,7 @@ jobs:
     - name: Deploy to AWS Lambda
       if: success()
       run: |
-        aws lambda update-function-code --function-name funcion --zip-file fileb://function.zip
+        aws lambda update-function-code --function-name ImperialLuckFunction-Isaac --zip-file fileb://policies.zip
 
     - name: Invoke Lambda function with test-pos.json
       run: |
