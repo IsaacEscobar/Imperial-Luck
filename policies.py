@@ -8,15 +8,16 @@ def lambda_handler(event, context):
     You have the right to access, correct, and delete your data at any time. For more details, please review our Privacy Policy.
     """
     
-    response = event.get("response", "no")
+    response = event['response']
 
     if response.lower() == "yes":
-        return {
-            'statusCode': 200,
-            'body': json.dumps('User accepted the data policy. The user can continue with te application.')
-        }
+        statuscode = 200
+        body = 'User accepted the data policy. The user can continue with te application.'
     else:
-        return {
-            'statusCode': 400,
-            'body': json.dumps('User rejected the data policy. The user cannnot continue with te application.')
+        statuscode = 400
+        body = 'User rejected the data policy. The user cannnot continue with te application.'
+        
+    return {
+        'statusCode': statuscode,
+        'body': json.dumps(body)
         }
