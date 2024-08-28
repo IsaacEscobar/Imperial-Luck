@@ -8,7 +8,7 @@ def lambda_handler(event, context):
     You have the right to access, correct, and delete your data at any time. For more details, please review our Privacy Policy.
     """
     
-    response = "yes" #event['response']
+    response = event['response']
 
     if response.lower() == "yes":
         statuscode = 200
