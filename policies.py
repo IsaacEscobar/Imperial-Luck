@@ -1,7 +1,6 @@
 import json
-#ab
+
 def lambda_handler(event, context):
-    # Política de tratamiento de datos (puede ser un texto más largo en la práctica)
     data_policy = """
     We are committed to protecting your privacy. We collect and use your personal data only to provide and improve our services.
     Your data is stored securely and only accessible to authorized personnel.
@@ -9,7 +8,6 @@ def lambda_handler(event, context):
     You have the right to access, correct, and delete your data at any time. For more details, please review our Privacy Policy.
     """
     
-    # Simulación de la aceptación del usuario (en un entorno real, esto vendría del front-end)
     user_acceptance = event.get("user_acceptance", "no")
 
     if user_acceptance.lower() == "yes":
