@@ -22,6 +22,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flask zappa
+        pip install setuptools
 
     - name: Package Lambda function
       run: |
