@@ -21,6 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install flask zappa
 
     - name: Package Lambda function
       run: |
@@ -37,6 +38,8 @@ jobs:
       if: success()
       run: |
         aws lambda update-function-code --function-name ImperialLuckFunction-Isaac --zip-file fileb://policies.zip
+        zappa init
+        zappa deploy dev
 
     - name: Create test response files
       run: |
