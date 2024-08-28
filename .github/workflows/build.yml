@@ -40,26 +40,18 @@ jobs:
 
     - name: Invoke Lambda function with test-pos.json
       run: |
-        aws lambda invoke \
-        --function-name funcion \
-        --payload file://test-pos.json \
-        response-pos.json \
-        --cli-binary-format raw-in-base64-out
+        aws lambda invoke --function-name ImperialLuckFunction-Isaac --payload file://test1.json res1.json --cli-binary-format raw-in-base64-out
 
     - name: Display response from test-pos.json
       run: |
         echo "Response from test-pos.json:"
-        cat response-pos.json
+        cat response1.json
 
     - name: Invoke Lambda function with test-neg.json
       run: |
-        aws lambda invoke \
-          --function-name funcion \
-          --payload file://test-neg.json \
-          response-neg.json \
-          --cli-binary-format raw-in-base64-out
+        aws lambda invoke --function-name funcion --payload file://test2.json res2.json --cli-binary-format raw-in-base64-out
 
     - name: Display response from test-neg.json
       run: |
         echo "Response from test-neg.json:"
-        cat response-neg.json
+        cat response2.json
