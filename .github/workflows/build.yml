@@ -44,7 +44,7 @@ jobs:
 
     - name: Display response from test 1
       run: |
-        echo "Response from test-pos.json:"
+        echo "Response from test1.json:"
         cat response1.json
 
     - name: Invoke Lambda function for test 2
@@ -53,5 +53,5 @@ jobs:
 
     - name: Display response from test 2
       run: |
-        echo "Response from test-neg.json:"
+        echo "Response from test2s.json:"
         cat response2.json
