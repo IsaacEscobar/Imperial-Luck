@@ -40,7 +40,7 @@ jobs:
 
     - name: Invoke Lambda function for test 1
       run: |
-        aws lambda invoke --function-name ImperialLuckFunction-Isaac --payload file://test1.json res1.json --cli-binary-format raw-in-base64-out
+        aws lambda invoke --function-name policies --payload file://test1.json res1.json --cli-binary-format raw-in-base64-out
 
     - name: Display response from test 1
       run: |
@@ -49,7 +49,7 @@ jobs:
 
     - name: Invoke Lambda function for test 2
       run: |
-        aws lambda invoke --function-name funcion --payload file://test2.json res2.json --cli-binary-format raw-in-base64-out
+        aws lambda invoke --function-name policies --payload file://test2.json res2.json --cli-binary-format raw-in-base64-out
 
     - name: Display response from test 2
       run: |
