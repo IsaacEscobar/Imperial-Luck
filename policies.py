@@ -8,9 +8,9 @@ def lambda_handler(event, context):
     You have the right to access, correct, and delete your data at any time. For more details, please review our Privacy Policy.
     """
     
-    user_acceptance = event.get("user_acceptance", "no")
+    response = event.get("response", "no")
 
-    if user_acceptance.lower() == "yes":
+    if response.lower() == "yes":
         return {
             'statusCode': 200,
             'body': json.dumps('User accepted the data policy. The user can continue with te application.')
