@@ -12,10 +12,10 @@ def lambda_handler(event, context):
 
     if response.lower() == "yes":
         statuscode = 200
-        body = 'User accepted the data policy. The user can continue with te application.'
+        body = 'PASA'
     else:
         statuscode = 400
-        body = 'User rejected the data policy. The user cannnot continue with te application.'
+        body = 'NO PASA'
         
     return {
         'statusCode': statuscode,
